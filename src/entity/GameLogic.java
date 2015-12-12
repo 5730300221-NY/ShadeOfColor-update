@@ -221,7 +221,6 @@ public class GameLogic {
 	}
 
 	public void logicUpdate() {
-
 		for (Wolf a : wolves) {
 			a.update();
 			if (a.collide(sheep) && !a.isDestroyed()) {
@@ -252,6 +251,8 @@ public class GameLogic {
 		--spawnDelayCounter;
 		if (spawnDelayCounter == 0) {
 			WolfRoundGen();
+			RenderableHolder.getInstance().add(beam);
+			RenderableHolder.getInstance().getRenderable().remove(beam);
 			spawnDelayCounter = ((int) (Math.ceil((Math.random() * 2))) + 2) * 20;
 		}
 

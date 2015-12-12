@@ -78,13 +78,6 @@ public class GameScreen extends JPanel {
 					GameLogic.KillWolf(Sheep.getSheepColor());
 					AudioUtility.playSound("Attack");
 				}
-				else if (e.getKeyCode() == KeyEvent.VK_O) {
-					System.out.println("mix");
-					Button.update(4);
-					InputUtility.keyPressed(e);
-					InputUtility.Updatestate();
-					Sheep.Update();
-				}
 				else if (e.getKeyCode() == KeyEvent.VK_Q) {
 					Button.update(0);
 					InputUtility.keyPressed(e);
@@ -109,13 +102,12 @@ public class GameScreen extends JPanel {
 					InputUtility.Updatestate();
 					Sheep.Update();
 				}
-//				else if (e.getKeyCode() == KeyEvent.VK_O) {
-//					System.out.println("mix");
-//					Button.update(4);
-//					InputUtility.keyPressed(e);
-//					InputUtility.Updatestate();
-//					Sheep.Update();
-//				}
+				else if (e.getKeyCode() == KeyEvent.VK_O) {
+					Button.update(4);
+					InputUtility.keyPressed(e);
+					InputUtility.Updatestate();
+					Sheep.Update();
+				}
 				else if (e.getKeyCode() == KeyEvent.VK_I) {
 					Button.update(5);
 					InputUtility.keyPressed(e);

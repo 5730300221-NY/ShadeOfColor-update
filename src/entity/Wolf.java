@@ -15,6 +15,7 @@ public class Wolf implements IRenderable{
 	private int x;
 	private int y;
 	private int speed;
+	private int z = Integer.MAX_VALUE;
 	
 	public Wolf(int WolfColor,int WolfPoint, int speed , int x , int y ){
 		this.WolfColor = WolfColor;
@@ -128,7 +129,7 @@ public class Wolf implements IRenderable{
 
 	@Override
 	public int getZ() {
-		return Integer.MAX_VALUE-2;
+		return z--;
 	}
 
 	
