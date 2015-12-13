@@ -4,13 +4,16 @@ import javax.swing.JPanel;
 
 import render.AudioUtility;
 import render.GameScreen;
+import render.GameTitle;
 import render.GameWindow;
+import render.HowToPlay;
 
 public class GameManager {
 	public static GameWindow frame;
 	public static GameScreen gc;
 	public static GameTitle gt;
 	public static GameLogic gl;
+	public static HowToPlay Hp;
 	public static JPanel nextScene = null;
 	private static boolean Ingame=false;
 	public static void rungame() {

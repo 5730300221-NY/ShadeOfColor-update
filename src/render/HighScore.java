@@ -6,18 +6,24 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import entity.GameManager;
+
 public class HighScore extends JPanel {
 	public BufferedImage bg;
+	private static JLabel back = new JLabel();
 
 	public HighScore() {
 
@@ -30,9 +36,50 @@ public class HighScore extends JPanel {
 				+ String.format("%19s", "score"), SwingConstants.CENTER);
 		title.setFont(new Font("Cooper Black", Font.BOLD, 50));
 		title.setForeground(Color.yellow);
-
 		this.add(title);
-;
+		
+		back.setBorder(BorderFactory.createEmptyBorder(380, 525, 0, 0));
+		ClassLoader cloader = RenderableHolder.class.getClassLoader();
+		ImageIcon back0 = new ImageIcon(cloader.getResource("image/Skip0.png"));
+		ImageIcon back1 = new ImageIcon(cloader.getResource("image/Skip1.png"));
+		back.setIcon(back0);
+		this.add(back);
+		
+		back.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				back.setIcon(back0);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				back.setIcon(back1);
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				AudioUtility.playSound("Click");
+				GameManager.frame.switchScene(new GameTitle());
+			}
+		});
+
+
 	}
 
 	@Override

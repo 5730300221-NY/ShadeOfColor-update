@@ -63,8 +63,8 @@ public class HighScoreUtility {
 		}
 
 		private static String[] defaultRecord() {
-			return new String[] { "A:8000000", "B:7500000", "C:7000000",
-					"D:6500000", "E:6000000" };
+			return new String[] { "A:350000", "B:230000", "C:180000",
+					"D:120000", "E:90000" };
 		}
 
 		@Override
