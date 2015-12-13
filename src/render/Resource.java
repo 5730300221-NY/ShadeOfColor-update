@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 
 public class Resource {
 	public static final Font standardFont = new Font("Tahoma", Font.BOLD, 30);
+	public static final Font titleFont = new Font("Cooper Black",Font.BOLD,40);
 
 	private static BufferedImage getImage(String directory) {
 		BufferedImage im;
@@ -240,18 +241,18 @@ public class Resource {
 
 		Wolf1 = getImage("image/Wolf1.png");
 
-		St1 = getImage("image/Start1.png");
-		St0 = getImage("image/Start0.png");
-		Hg1 = getImage("image/Hg1.png");
-		Hg0 = getImage("image/Hg0.png");
-
-		IntroBG = getImage("image/IntroBG.png");
-		Ishade = getImage("image/ishade.png");
-		Iof = getImage("image/iof.png");
-		Icolorful = getImage("image/icolorful.png");
-		Eu = getImage("image/Up.png");
-		Em = getImage("image/Med.png");
-		Ed = getImage("image/Down.png");
+//		St1 = getImage("image/Start1.png");
+//		St0 = getImage("image/Start0.png");
+//		Hg1 = getImage("image/Hg1.png");
+//		Hg0 = getImage("image/Hg0.png");
+//
+//		IntroBG = getImage("image/IntroBG.png");
+//		Ishade = getImage("image/ishade.png");
+//		Iof = getImage("image/iof.png");
+//		Icolorful = getImage("image/icolorful.png");
+//		Eu = getImage("image/Up.png");
+//		Em = getImage("image/Med.png");
+//		Ed = getImage("image/Down.png");
 
 	}
 

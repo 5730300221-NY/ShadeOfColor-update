@@ -1,44 +1,39 @@
 package entity;
 
-import java.applet.AudioClip;
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import render.AudioUtility;
 import render.GameScreen;
-import render.GameWindow;
+import render.HighScore;
+import render.HighScoreUtility;
 import render.RenderableHolder;
 
-public class GameTitle extends JPanel{
+public class GameTitle extends JPanel {
 
-	private BufferedImage IntroBG, Ishade, Iof, Icolorful,Eu,Em,Ed;
+	private BufferedImage IntroBG, Ishade, Iof, Icolorful, Eu, Em, Ed;
 	private static JLabel Stbn = new JLabel();
 	private static JLabel Hgbn = new JLabel();
 	private static JLabel Abbn = new JLabel();
-	private static int eyestate=1,ShadeX,ShadeY,OfX,OfY,ColX,ColY;
+	private static int eyestate = 1, ShadeX, ShadeY, OfX, OfY, ColX, ColY;
 
 	public GameTitle() {
 		this.setDoubleBuffered(true);
 		AudioUtility.playSound("Intro");
 		this.setPreferredSize(new Dimension(1280, 720));
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setBorder(BorderFactory.createEmptyBorder(350,700,0,0));
+		this.setBorder(BorderFactory.createEmptyBorder(350, 700, 0, 0));
 		Stbn.setBorder(BorderFactory.createEmptyBorder(0, 0, 80, 0));
 		Hgbn.setBorder(BorderFactory.createEmptyBorder(0, 0, 80, 0));
 		Abbn.setBorder(BorderFactory.createEmptyBorder(0, 0, 80, 0));
@@ -52,7 +47,6 @@ public class GameTitle extends JPanel{
 		this.add(Stbn);
 		this.add(Hgbn);
 
-		
 		Stbn.addMouseListener(new MouseListener() {
 
 			@Override
@@ -75,7 +69,7 @@ public class GameTitle extends JPanel{
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				eyestate=0;
+				eyestate = 0;
 				Stbn.setIcon(St1);
 			}
 
@@ -108,23 +102,25 @@ public class GameTitle extends JPanel{
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				eyestate=1;
+				eyestate = 1;
 				Hgbn.setIcon(Hg1);
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				AudioUtility.playSound("Click");
-
+				HighScoreUtility.displayTop5();
+				GameManager.frame.switchScene(new HighScore());
+				String message = "High Score";
 			}
 		});
 
 	}
-	
-	public void textmove(){
-		
+
+	public void textmove() {
+
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -133,7 +129,8 @@ public class GameTitle extends JPanel{
 			IntroBG = ImageIO.read(cloader.getResource("image/IntroBG.png"));
 			Ishade = ImageIO.read(cloader.getResource("image/ishade.png"));
 			Iof = ImageIO.read(cloader.getResource("image/iof.png"));
-			Icolorful = ImageIO.read(cloader.getResource("image/icolorful.png"));
+			Icolorful = ImageIO
+					.read(cloader.getResource("image/icolorful.png"));
 			Eu = ImageIO.read(cloader.getResource("image/Up.png"));
 			Em = ImageIO.read(cloader.getResource("image/Med.png"));
 			Ed = ImageIO.read(cloader.getResource("image/Down.png"));
@@ -144,8 +141,10 @@ public class GameTitle extends JPanel{
 		g.drawImage(Ishade, 130, 70, null);
 		g.drawImage(Iof, 470, 70, null);
 		g.drawImage(Icolorful, 630, 70, null);
-		if(eyestate==0) g.drawImage(Eu,400,451, null);
-		else if (eyestate==1) g.drawImage(Ed,405,444, null);
+		if (eyestate == 0)
+			g.drawImage(Eu, 400, 451, null);
+		else if (eyestate == 1)
+			g.drawImage(Ed, 405, 444, null);
 	}
 
 }
