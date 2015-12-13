@@ -10,6 +10,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -20,22 +22,17 @@ public class HighScore extends JPanel {
 	public HighScore() {
 
 		this.setPreferredSize(new Dimension(1280, 720));
-		this.setLayout(new BorderLayout());
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setBorder(BorderFactory.createEmptyBorder(160,0,0,0));
 		this.setBackground(Color.WHITE);
-		JLabel label = new JLabel("High Score", SwingConstants.CENTER);
-		label.setFont(new Font("Cooper Black", Font.BOLD, 50));
-		label.setForeground(new Color(156,0,153));
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(9, 3));
-		JLabel title = new JLabel("rank" + String.format("%18s", "name")
-				+ String.format("%22s", "score"), SwingConstants.CENTER);
-		title.setFont(Resource.titleFont);
-		title.setForeground(new Color(156,0,153));
-		panel.add(label);
-		panel.add(title);
 
-		panel.setOpaque(false);
-		this.add(panel, BorderLayout.CENTER);
+		JLabel title = new JLabel(String.format("%19s","rank") + String.format("%15s", "name")
+				+ String.format("%19s", "score"), SwingConstants.CENTER);
+		title.setFont(new Font("Cooper Black", Font.BOLD, 50));
+		title.setForeground(Color.yellow);
+
+		this.add(title);
+;
 	}
 
 	@Override
@@ -44,15 +41,15 @@ public class HighScore extends JPanel {
 		super.paintComponent(g);
 		try {
 			ClassLoader cloader = RenderableHolder.class.getClassLoader();
-			bg = ImageIO.read(cloader.getResource("image/Bg16r.jpg"));
+			bg = ImageIO.read(cloader.getResource("image/bghigh.jpg"));
 		} catch (IOException ex) {
 			System.out.println("can't load");
 		}
 
 		g.drawImage(bg, 0, 0, null);
 		g.setFont(Resource.titleFont);
-		g.setColor(new Color(255,51,153));
-		int y = 200;
+		g.setColor(new Color(255,200,255));
+		int y = 260;
 		int xName;
 		int xScore;
 		String name = "";
@@ -67,8 +64,8 @@ public class HighScore extends JPanel {
 			score = "" + HighScoreUtility.getHighScoreRecord()[i].getScore();
 			xScore = (int) g.getFontMetrics(Resource.titleFont)
 					.getStringBounds(score, g).getWidth();
-			g.drawString(score, 1020 - xScore, y);
-			y += 80;
+			g.drawString(score, 1070 - xScore, y);
+			y += 65;
 
 		}
 
