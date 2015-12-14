@@ -4,10 +4,9 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import render.AudioUtility;
-import render.GameBackground;
 import render.Button;
-import render.GameScreen;
-import render.GameTitle;
+import render.GameBackground;
+import render.GameOver;
 import render.NewColor;
 import render.RenderableHolder;
 
@@ -545,9 +544,9 @@ public class GameLogic {
 						RenderableHolder.getInstance().getRenderable()
 								.remove(b);
 					}
-					playerStatus.setScore(0);
+					//playerStatus.setScore(0);
 					GameManager.setIngame(false);
-					GameManager.frame.switchScene(new GameTitle());
+					GameManager.frame.switchScene(new GameOver());
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

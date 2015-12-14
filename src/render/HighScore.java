@@ -26,6 +26,7 @@ public class HighScore extends JPanel {
 	private static JLabel back = new JLabel();
 
 	public HighScore() {
+		HighScoreUtility.displayTop5();
 
 		this.setPreferredSize(new Dimension(1280, 720));
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -88,7 +89,7 @@ public class HighScore extends JPanel {
 		super.paintComponent(g);
 		try {
 			ClassLoader cloader = RenderableHolder.class.getClassLoader();
-			bg = ImageIO.read(cloader.getResource("image/bghigh.jpg"));
+			bg = ImageIO.read(cloader.getResource("image/high.png"));
 		} catch (IOException ex) {
 			System.out.println("can't load");
 		}

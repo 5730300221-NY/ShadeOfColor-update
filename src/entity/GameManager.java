@@ -3,6 +3,7 @@ package entity;
 import javax.swing.JPanel;
 
 import render.AudioUtility;
+import render.GameOver;
 import render.GameScreen;
 import render.GameTitle;
 import render.GameWindow;
@@ -13,6 +14,7 @@ public class GameManager {
 	public static GameScreen gc;
 	public static GameTitle gt;
 	public static GameLogic gl;
+	
 	private static boolean Ingame = false;
 
 	public static boolean isIngame() {
@@ -28,6 +30,7 @@ public class GameManager {
 		gt = new GameTitle();
 		gc = new GameScreen();
 		gl = GameLogic.getInstance();
+		
 		frame = new GameWindow(gt);
 
 		while (true) {

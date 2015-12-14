@@ -63,8 +63,8 @@ public class HighScoreUtility {
 		}
 
 		private static String[] defaultRecord() {
-			return new String[] { "A:350000", "B:230000", "C:180000",
-					"D:120000", "E:90000" };
+			return new String[] { "A:90000", "B:75000", "C:60000",
+					"D:52000", "E:45000" };
 		}
 
 		@Override
@@ -80,6 +80,38 @@ public class HighScoreUtility {
 	private static HighScoreRecord[] highScoreRecord = null;
 
 	private static String readFileName = "highscore";
+
+	private static String message = "";
+
+	private static boolean add = false;
+
+	public static void checkScore(int score) {
+		if (!loadHighScore() || highScoreRecord == null) {
+			JOptionPane.showMessageDialog(null,
+					"Error loading highscore record", "Error",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		int index = highScoreRecord.length;
+		for (int i = 0; i < highScoreRecord.length; i++) {
+			if (score > highScoreRecord[i].score) {
+				index = i;
+				break;
+			}
+		}
+
+		if (index >= highScoreRecord.length) {
+			message = "Game over. Your score is " + score + ".";
+			add = false;
+		
+		} else {
+			add = true;
+			for (int i = highScoreRecord.length - 1; i >= index + 1; i--) {
+				highScoreRecord[i] = highScoreRecord[i - 1];
+			}
+			message = "Congratulation, you are ranked " + (index + 1) + ".";
+		}
+	}
 
 	/*
 	 * Display player's score and record if the player rank is 10 or higher.
@@ -98,18 +130,13 @@ public class HighScoreUtility {
 				break;
 			}
 		}
-		if (index >= highScoreRecord.length) {
-			String message = "Game over\n" + "Your score is " + score;
-			JOptionPane.showMessageDialog(null, message, "Game over",
-					JOptionPane.INFORMATION_MESSAGE);
-		} else {
+		if (isAdd()) {
+			
 			for (int i = highScoreRecord.length - 1; i >= index + 1; i--) {
 				highScoreRecord[i] = highScoreRecord[i - 1];
 			}
-			String message = "Congratulation, you are ranked " + (index + 1)
-					+ "\nPlease enter your name";
-			String in = JOptionPane.showInputDialog(null, message,
-					"High score", JOptionPane.INFORMATION_MESSAGE);
+			message = "Congratulation, you are ranked " + (index + 1) + ".";
+			String in = GameOver.getText();
 			highScoreRecord[index] = new HighScoreRecord(in, score);
 			try {
 
@@ -130,6 +157,14 @@ public class HighScoreUtility {
 				return;
 			}
 		}
+	}
+
+	public static String getMessage() {
+		return message;
+	}
+
+	public static boolean isAdd() {
+		return add;
 	}
 
 	public static void displayTop5() {

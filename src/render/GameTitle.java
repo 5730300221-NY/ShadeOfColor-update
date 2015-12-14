@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import entity.GameManager;
+import entity.PlayerStatus;
 
 public class GameTitle extends JPanel {
 
@@ -77,6 +78,7 @@ public class GameTitle extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				PlayerStatus.setScore(0);
 				AudioUtility.playSound("Click");
 				GameManager.frame.switchScene(new HowToPlay());
 			}
@@ -111,10 +113,7 @@ public class GameTitle extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				AudioUtility.playSound("Click");
-				HighScoreUtility.displayTop5();
 				GameManager.frame.switchScene(new HighScore());
-				String message = "High Score";
-
 
 			}
 		});
