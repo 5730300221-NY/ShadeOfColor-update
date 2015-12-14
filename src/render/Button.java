@@ -15,10 +15,6 @@ public class Button implements IRenderable {
 	private static int Bright = 0;
 	private static int reset = 0;
 
-	public Button() {
-
-	}
-
 	public static int getR() {
 		return R;
 	}
@@ -221,13 +217,11 @@ public class Button implements IRenderable {
 
 	@Override
 	public boolean IsVisible() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public int getZ() {
-		// TODO Auto-generated method stub
 		return Integer.MAX_VALUE;
 	}
 

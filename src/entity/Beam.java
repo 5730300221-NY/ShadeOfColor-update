@@ -7,10 +7,6 @@ import render.Resource;
 
 public class Beam implements IRenderable {
 
-	public Beam() {
-
-	}
-
 	@Override
 	public void draw(Graphics2D g2d) {
 		if (Sheep.getSheepIndex() == 1) {

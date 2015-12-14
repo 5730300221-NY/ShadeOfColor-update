@@ -11,7 +11,6 @@ import render.Resource;
 public class Sheep implements IRenderable {
 	private static int SheepColor; // 0-20
 	private static int SheepIndex;
-	private static int Score;
 	private static boolean IsShot;
 	private static Beam beam;
 	private static int state = 0;
@@ -21,7 +20,6 @@ public class Sheep implements IRenderable {
 		this.SheepIndex = 0;
 		this.IsShot = false;
 		this.state = 0;
-		this.Score = 0;
 	}
 	
 	public static int getSheepColor() {
@@ -39,15 +37,7 @@ public class Sheep implements IRenderable {
 	public static void setSheepIndex(int sheepIndex) {
 		SheepIndex = sheepIndex;
 	}
-
-	public static int getScore() {
-		return Score;
-	}
-
-	public static void setScore(int score) {
-		Score = score;
-	}
-
+	
 	public static boolean isIsShot() {
 		return IsShot;
 	}
@@ -169,7 +159,6 @@ public class Sheep implements IRenderable {
 
 	public static  void Update() {
 		Sheep.setColor(Sheep.state);
-//		System.out.println(" Color is " + getSheepColor() + " state is "+ getState());
 	}
 
 	@Override

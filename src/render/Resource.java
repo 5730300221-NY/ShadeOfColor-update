@@ -19,7 +19,6 @@ public class Resource {
 			im = null;
 		}
 		return im;
-
 	}
 
 	// set1
@@ -72,13 +71,23 @@ public class Resource {
 			RGbright_S0, RGbright_S1, RGbright_W0;
 	public static BufferedImage RGdark_B, RGdark_R, RGdark_R1, RGdark_S0,
 			RGdark_S1, RGdark_W0;
-	public static BufferedImage Wolf1, ScreenBG;
+	public static BufferedImage Wolf1, BC1, BC2, BC3, BC4, BC5, BC6, BC7, R14,
+			R17, R21;
 	public static BufferedImage St1, St0, Hg1, Hg0;
 	public static BufferedImage IntroBG, Ishade, Iof, Icolorful, Eu, Em, Ed;
 
 	static {
 
-		ScreenBG = getImage("image/ScreenBG2.png");
+		BC1 = getImage("image/BC1.png");
+		BC2 = getImage("image/BC2.png");
+		BC3 = getImage("image/BC3.png");
+		BC4 = getImage("image/BC4.png");
+		BC5 = getImage("image/BC5.png");
+		BC6 = getImage("image/BC6.png");
+		BC7 = getImage("image/BC7.png");
+		R14 = getImage("image/R14.png");
+		R17 = getImage("image/R17.png");
+		R21 = getImage("image/R21.png");
 
 		BlueButton = getImage("image/BlueButton.png");
 		BrightButton = getImage("image/BrightButton.png");
@@ -240,20 +249,6 @@ public class Resource {
 		RGdark_W0 = getImage("image/RGdark_W0.png");
 
 		Wolf1 = getImage("image/Wolf1.png");
-
-		St1 = getImage("image/Start1.png");
-		St0 = getImage("image/Start0.png");
-		Hg1 = getImage("image/Hg1.png");
-		Hg0 = getImage("image/Hg0.png");
-
-		IntroBG = getImage("image/IntroBG.png");
-		Ishade = getImage("image/ishade.png");
-		Iof = getImage("image/iof.png");
-		Icolorful = getImage("image/icolorful.png");
-		Eu = getImage("image/Up.png");
-		Em = getImage("image/Med.png");
-		Ed = getImage("image/Down.png");
-
 	}
 
 }

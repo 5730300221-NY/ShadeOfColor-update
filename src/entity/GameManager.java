@@ -13,44 +13,39 @@ public class GameManager {
 	public static GameScreen gc;
 	public static GameTitle gt;
 	public static GameLogic gl;
-	public static HowToPlay Hp;
-	public static JPanel nextScene = null;
-	private static boolean Ingame=false;
+	private static boolean Ingame = false;
+
+	public static boolean isIngame() {
+		return Ingame;
+	}
+
+	public static void setIngame(boolean ingame) {
+		Ingame = ingame;
+	}
+
 	public static void rungame() {
-		
+
 		gt = new GameTitle();
 		gc = new GameScreen();
 		gl = GameLogic.getInstance();
 		frame = new GameWindow(gt);
-	
-		while(true){
+
+		while (true) {
 			try {
 				Thread.sleep(35);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			frame.getCurrentScene().repaint();
-			
-			if(frame.getCurrentScene() instanceof GameScreen){
-				if(!Ingame){
+
+			if (frame.getCurrentScene() instanceof GameScreen) {
+				if (!Ingame) {
 					AudioUtility.playSound("GameSound");
-					Ingame=true;
+					Ingame = true;
 				}
 				gl.logicUpdate();
 			}
-//			if(nextScene != null){
-//				if(frame.getCurrentScene() instanceof GameScreen){
-//					
-//				}
-//				if(nextScene instanceof GameScreen){
-//					
-//				}
-//				nextScene=null;
-//			}
 		}
-		
-		
-		}
+	}
 
-	
 }

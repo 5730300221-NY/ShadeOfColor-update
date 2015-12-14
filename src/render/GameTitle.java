@@ -22,20 +22,20 @@ import javax.swing.JPanel;
 
 import entity.GameManager;
 
-public class GameTitle extends JPanel{
+public class GameTitle extends JPanel {
 
-	private BufferedImage IntroBG, Ishade, Iof, Icolorful,Eu,Em,Ed;
+	private BufferedImage IntroBG, Ishade, Iof, Icolorful, Eu, Ed;
 	private static JLabel Stbn = new JLabel();
 	private static JLabel Hgbn = new JLabel();
 	private static JLabel Abbn = new JLabel();
-	private static int eyestate=1,ShadeX,ShadeY,OfX,OfY,ColX,ColY;
+	private static int eyestate = 1;
 
 	public GameTitle() {
 		this.setDoubleBuffered(true);
 		AudioUtility.playSound("Intro");
 		this.setPreferredSize(new Dimension(1280, 720));
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setBorder(BorderFactory.createEmptyBorder(350,700,0,0));
+		this.setBorder(BorderFactory.createEmptyBorder(350, 700, 0, 0));
 		Stbn.setBorder(BorderFactory.createEmptyBorder(0, 0, 80, 0));
 		Hgbn.setBorder(BorderFactory.createEmptyBorder(0, 0, 80, 0));
 		Abbn.setBorder(BorderFactory.createEmptyBorder(0, 0, 80, 0));
@@ -49,7 +49,6 @@ public class GameTitle extends JPanel{
 		this.add(Stbn);
 		this.add(Hgbn);
 
-		
 		Stbn.addMouseListener(new MouseListener() {
 
 			@Override
@@ -72,7 +71,7 @@ public class GameTitle extends JPanel{
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				eyestate=0;
+				eyestate = 0;
 				Stbn.setIcon(St1);
 			}
 
@@ -105,7 +104,7 @@ public class GameTitle extends JPanel{
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				eyestate=1;
+				eyestate = 1;
 				Hgbn.setIcon(Hg1);
 			}
 
@@ -116,12 +115,12 @@ public class GameTitle extends JPanel{
 				GameManager.frame.switchScene(new HighScore());
 				String message = "High Score";
 
+
 			}
 		});
 
 	}
-	
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -130,9 +129,9 @@ public class GameTitle extends JPanel{
 			IntroBG = ImageIO.read(cloader.getResource("image/IntroBG.png"));
 			Ishade = ImageIO.read(cloader.getResource("image/ishade.png"));
 			Iof = ImageIO.read(cloader.getResource("image/iof.png"));
-			Icolorful = ImageIO.read(cloader.getResource("image/icolorful.png"));
+			Icolorful = ImageIO
+					.read(cloader.getResource("image/icolorful.png"));
 			Eu = ImageIO.read(cloader.getResource("image/Up.png"));
-			Em = ImageIO.read(cloader.getResource("image/Med.png"));
 			Ed = ImageIO.read(cloader.getResource("image/Down.png"));
 		} catch (IOException ex) {
 			System.out.println("can't load");
@@ -141,8 +140,10 @@ public class GameTitle extends JPanel{
 		g.drawImage(Ishade, 130, 70, null);
 		g.drawImage(Iof, 470, 70, null);
 		g.drawImage(Icolorful, 630, 70, null);
-		if(eyestate==0) g.drawImage(Eu,400,451, null);
-		else if (eyestate==1) g.drawImage(Ed,405,444, null);
+		if (eyestate == 0)
+			g.drawImage(Eu, 400, 451, null);
+		else if (eyestate == 1)
+			g.drawImage(Ed, 405, 444, null);
 	}
 
 }
