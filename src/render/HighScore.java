@@ -40,8 +40,8 @@ public class HighScore extends JPanel {
 		
 		back.setBorder(BorderFactory.createEmptyBorder(380, 525, 0, 0));
 		ClassLoader cloader = RenderableHolder.class.getClassLoader();
-		ImageIcon back0 = new ImageIcon(cloader.getResource("image/Skip0.png"));
-		ImageIcon back1 = new ImageIcon(cloader.getResource("image/Skip1.png"));
+		ImageIcon back0 = new ImageIcon(cloader.getResource("image/Home0.png"));
+		ImageIcon back1 = new ImageIcon(cloader.getResource("image/Home1.png"));
 		back.setIcon(back0);
 		this.add(back);
 		
