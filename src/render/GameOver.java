@@ -160,7 +160,6 @@ public class GameOver extends JPanel {
 					// TODO Auto-generated method stub
 					AudioUtility.playSound("Click");
 					textIn = text.getText();
-					System.out.println(text.getText());
 					HighScoreUtility.recordHighScore(PlayerStatus.getScore());
 
 					GameManager.frame.switchScene(new HighScore());

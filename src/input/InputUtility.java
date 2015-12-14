@@ -14,12 +14,21 @@ public class InputUtility {
 	private static boolean bright = false;
 	private static boolean dark = false;
 	private static boolean space = false;
+	private static boolean pause = false;
 	
 
 	// getter & setter
 
 	public static boolean isReset() {
 		return reset;
+	}
+
+	public static boolean isPause() {
+		return pause;
+	}
+
+	public static void setPause(boolean pause) {
+		InputUtility.pause = pause;
 	}
 
 	public static void setReset(boolean reset) {

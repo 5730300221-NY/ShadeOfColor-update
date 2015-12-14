@@ -1,13 +1,26 @@
 package render;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 
 public class GameWindow extends JFrame {
 	private JPanel currentFrame;
 
 	public GameWindow(JPanel frame) {
 		super("Shade Of Colorful");
+		ClassLoader cloader = RenderableHolder.class.getClassLoader();
+		java.net.URL url = cloader.getResource("image/Icon.png");
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Image img = kit.createImage(url);
+		this.setIconImage(img);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		this.currentFrame = frame;
@@ -15,6 +28,7 @@ public class GameWindow extends JFrame {
 		pack();
 		this.setVisible(true);
 		this.currentFrame.requestFocus();
+		
 	}
 
 	public void switchScene(JPanel frame) {

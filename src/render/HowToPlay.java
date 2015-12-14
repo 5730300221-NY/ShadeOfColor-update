@@ -13,18 +13,21 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import entity.GameManager;
+
 
 public class HowToPlay extends JPanel{
 		private BufferedImage H1,H2,H3,H4;
-		private static JLabel skip = new JLabel();
-		private static JLabel next = new JLabel();
-		private static JLabel play = new JLabel();
-		private static int page;
+		private static JLabel skip; 
+		private static JLabel next; 
+		private static JLabel play; 
+		private int page;
 		
 		public HowToPlay(){
 			this.page=1;
+			skip = new JLabel();
+			next = new JLabel();
+			play = new JLabel();
 			this.setDoubleBuffered(true);
 			this.setPreferredSize(new Dimension(1280, 720));
 			this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -32,7 +35,6 @@ public class HowToPlay extends JPanel{
 			skip.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 50));
 			next.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 0));
 			play.setBorder(BorderFactory.createEmptyBorder(0, 150, 0, 0));
-	
 			ClassLoader cloader = RenderableHolder.class.getClassLoader();
 			ImageIcon skip0 = new ImageIcon(cloader.getResource("image/Skip0.png"));
 			ImageIcon skip1 = new ImageIcon(cloader.getResource("image/Skip1.png"));
@@ -79,7 +81,6 @@ public class HowToPlay extends JPanel{
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					AudioUtility.playSound("Click");
-//					GameManager.frame.switchScene(new GameScreen());
 					GameManager.frame.switchScene(new NewColor());
 				}
 			});
@@ -112,12 +113,14 @@ public class HowToPlay extends JPanel{
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					AudioUtility.playSound("Click");
-					if(getPage()+1==4){
+					if(getPage()+1>=4){
 						remove(skip);
 						remove(next);
 						play.setVisible(true);
 					}
+					
 					setPage(getPage()+1);
+					
 				}
 			});
 			
@@ -149,20 +152,20 @@ public class HowToPlay extends JPanel{
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					AudioUtility.playSound("Click");
-//					GameManager.frame.switchScene(new GameScreen());
+					setPage(1);
 					GameManager.frame.switchScene(new NewColor());
 				}
 			});
 		}
 		
 		
-		public static int getPage() {
+		public int getPage() {
 			return page;
 		}
 
 
-		public static void setPage(int page) {
-			HowToPlay.page = page;
+		public void setPage(int page) {
+			this.page = page;
 		}
 
 

@@ -7,18 +7,32 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import entity.GameLogic;
+import entity.GameManager;
 import entity.Sheep;
 
 public class GameScreen extends JPanel {
 
+	private static JLabel Home = new JLabel();
+	private boolean PauseStatus;
+	
 	public GameScreen() {
 		this.setDoubleBuffered(true);
 		this.setPreferredSize(new Dimension(1280, 720));
+		this.PauseStatus=false;
+		ClassLoader cloader = RenderableHolder.class.getClassLoader();
+		ImageIcon HomeButton = new ImageIcon(cloader.getResource("image/Home2.png"));
+		Home.setIcon(HomeButton);
+		this.add(Home);
 		this.addKeyListener(new KeyListener() {
 
 			@Override
@@ -28,6 +42,9 @@ public class GameScreen extends JPanel {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
+				
+				InputUtility.setPause(false);
+				
 				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 					try {
 						Thread.sleep(100);
@@ -73,6 +90,13 @@ public class GameScreen extends JPanel {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
+				
+				if(e.getKeyCode()== KeyEvent.VK_ENTER && !InputUtility.isPause()){
+					InputUtility.setPause(true);
+					setPauseStatus(!isPauseStatus());
+					System.out.println(isPauseStatus());
+				}
+				
 				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 					Sheep.setSheepIndex(1);
 					GameLogic.KillWolf(Sheep.getSheepColor());
@@ -117,6 +141,49 @@ public class GameScreen extends JPanel {
 
 			}
 		});
+		
+		Home.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AudioUtility.stopSound("Intro");
+				AudioUtility.stopSound("GameSound");
+				AudioUtility.playSound("Intro");
+				GameManager.frame.switchScene(new GameTitle());
+			}
+		}); 
+	}
+	
+	public boolean isPauseStatus() {
+		return PauseStatus;
+	}
+
+	public void setPauseStatus(boolean pauseStatus) {
+		PauseStatus = pauseStatus;
 	}
 
 	public void paintComponent(Graphics g) {

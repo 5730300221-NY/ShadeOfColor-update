@@ -28,7 +28,6 @@ public class GameTitle extends JPanel {
 	private BufferedImage IntroBG, Ishade, Iof, Icolorful, Eu, Ed;
 	private static JLabel Stbn = new JLabel();
 	private static JLabel Hgbn = new JLabel();
-	private static JLabel Abbn = new JLabel();
 	private static int eyestate = 1;
 
 	public GameTitle() {
@@ -39,7 +38,6 @@ public class GameTitle extends JPanel {
 		this.setBorder(BorderFactory.createEmptyBorder(350, 700, 0, 0));
 		Stbn.setBorder(BorderFactory.createEmptyBorder(0, 0, 80, 0));
 		Hgbn.setBorder(BorderFactory.createEmptyBorder(0, 0, 80, 0));
-		Abbn.setBorder(BorderFactory.createEmptyBorder(0, 0, 80, 0));
 		ClassLoader cloader = RenderableHolder.class.getClassLoader();
 		ImageIcon St1 = new ImageIcon(cloader.getResource("image/Start1.png"));
 		ImageIcon St0 = new ImageIcon(cloader.getResource("image/Start0.png"));
@@ -113,7 +111,10 @@ public class GameTitle extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				AudioUtility.playSound("Click");
+				HighScoreUtility.displayTop5();
 				GameManager.frame.switchScene(new HighScore());
+				String message = "High Score";
+
 
 			}
 		});

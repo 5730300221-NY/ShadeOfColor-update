@@ -1,7 +1,9 @@
 package render;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -22,15 +24,16 @@ import entity.PlayerStatus;
 public class NewColor extends JPanel {
 	private BufferedImage C, C0, C1, C2, C3, C4, C5, C6, C7;
 	private static JLabel OK = new JLabel();
-
+	
 	public NewColor() {
 		this.setDoubleBuffered(true);
 		this.setPreferredSize(new Dimension(1280, 720));
-		OK.setBorder(BorderFactory.createEmptyBorder(590, 0, 0, 0));
+		OK.setBorder(BorderFactory.createEmptyBorder(589, 0, 0, 0));
 		ClassLoader cloader = RenderableHolder.class.getClassLoader();
-		ImageIcon OkButton = new ImageIcon(
-				cloader.getResource("image/OkButton.png"));
+		ImageIcon OkButton = new ImageIcon(cloader.getResource("image/OkButton.png"));
 		OK.setIcon(OkButton);
+		
+		
 		this.add(OK);
 
 		this.addKeyListener(new KeyListener() {

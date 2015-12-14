@@ -544,7 +544,6 @@ public class GameLogic {
 						RenderableHolder.getInstance().getRenderable()
 								.remove(b);
 					}
-					//playerStatus.setScore(0);
 					GameManager.setIngame(false);
 					GameManager.frame.switchScene(new GameOver());
 				} catch (InterruptedException e) {
