@@ -1,10 +1,6 @@
 package entity;
 
-import input.InputUtility;
-
 import java.awt.Graphics2D;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import render.IRenderable;
 import render.Resource;
 
@@ -16,12 +12,12 @@ public class Sheep implements IRenderable {
 	private static int state = 0;
 
 	public Sheep() {
-		this.SheepColor = 0;
-		this.SheepIndex = 0;
-		this.IsShot = false;
-		this.state = 0;
+		SheepColor = 0;
+		SheepIndex = 0;
+		IsShot = false;
+		state = 0;
 	}
-	
+
 	public static int getSheepColor() {
 		return SheepColor;
 	}
@@ -34,10 +30,10 @@ public class Sheep implements IRenderable {
 		return SheepIndex;
 	}
 
-	public static void setSheepIndex(int sheepIndex) {
+	public synchronized static void setSheepIndex(int sheepIndex) {
 		SheepIndex = sheepIndex;
 	}
-	
+
 	public static boolean isIsShot() {
 		return IsShot;
 	}
@@ -153,11 +149,10 @@ public class Sheep implements IRenderable {
 		}
 
 		setSheepColor(SheepColor);
-		
 
 	}
 
-	public static  void Update() {
+	public static void Update() {
 		Sheep.setColor(Sheep.state);
 	}
 
@@ -206,7 +201,7 @@ public class Sheep implements IRenderable {
 				g2d.drawImage(Resource.RbrightBdark_S0, 300, 340, null);
 			else if (Sheep.getSheepColor() == 20)
 				g2d.drawImage(Resource.GbrightBdark_S0, 300, 340, null);
-		} else if(SheepIndex==1) {
+		} else if (SheepIndex == 1) {
 			if (Sheep.getSheepColor() == 0)
 				g2d.drawImage(Resource.Black_S1, 300, 340, null);
 			else if (Sheep.getSheepColor() == 1)
@@ -259,7 +254,7 @@ public class Sheep implements IRenderable {
 
 	@Override
 	public int getZ() {
-		return Integer.MAX_VALUE-3;
+		return Integer.MAX_VALUE - 3;
 	}
 
 }

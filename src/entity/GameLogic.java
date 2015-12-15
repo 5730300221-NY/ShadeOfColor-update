@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import render.AudioUtility;
-import render.Button;
 import render.GameBackground;
+import render.Button;
 import render.GameOver;
+import render.GameScreen;
+import render.GameTitle;
 import render.NewColor;
 import render.RenderableHolder;
 
@@ -19,7 +21,7 @@ public class GameLogic {
 	protected GameBackground bg;
 	protected static List<Wolf> wolves;
 	private int wscore;
-	private int wolfGen;
+	private static int wolfGen;
 	private int spawnDelayCounter = (int) Math.ceil((Math.random())) * 90;
 
 	public GameLogic() {
@@ -517,7 +519,7 @@ public class GameLogic {
 
 	}
 
-	public static void KillWolf(int color) {
+	public synchronized static void KillWolf(int color) {
 		for (Wolf a : wolves) {
 			if (a.getWolfColor() == color) {
 				a.setDestroyed(true);
@@ -527,12 +529,21 @@ public class GameLogic {
 		}
 	}
 
-	public void logicUpdate() {
+	public static void clearwolf() {
+		wolfGen = 10;
+		PlayerStatus.setRoundstate(1);
+		AudioUtility.stopSound("GameSound");
+		for (Wolf b : wolves) {
+			wolves.remove(b);
+			RenderableHolder.getInstance().getRenderable().remove(b);
+		}
+		GameManager.setIngame(false);
+	}
 
+	public void logicUpdate() {
 		for (Wolf a : wolves) {
 			a.update();
 			if (a.collide(sheep) && !a.isDestroyed()) {
-				System.out.println("Collide");
 				try {
 					AudioUtility.stopSound("GameSound");
 					AudioUtility.playSound("GameOver");
@@ -551,7 +562,6 @@ public class GameLogic {
 				}
 			}
 			if (a.isDestroyed()) {
-				System.out.println(a.getWolfPoint());
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
@@ -589,7 +599,7 @@ public class GameLogic {
 
 			if (this.getWolfGen() > 0) {
 				WolfRoundGen();
-				this.setWolfGen(this.getWolfGen() - 1);
+				this.wolfGen = (this.wolfGen - 1);
 			}
 			if (playerStatus.getRoundstate() < 14) {
 				spawnDelayCounter = ((int) (Math.ceil((Math.random() * 2))) + 2) * 20;

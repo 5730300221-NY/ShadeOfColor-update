@@ -9,7 +9,6 @@ import javax.swing.ImageIcon;
 public class Resource {
 	public static final Font standardFont = new Font("Tahoma", Font.BOLD, 30);
 	public static final Font titleFont = new Font("Cooper Black",Font.BOLD,40);
-
 	private static BufferedImage getImage(String directory) {
 		BufferedImage im;
 		try {

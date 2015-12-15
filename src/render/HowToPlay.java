@@ -50,14 +50,11 @@ public class HowToPlay extends JPanel{
 			this.add(next);
 			this.add(play);
 			
-
-			
 			skip.addMouseListener(new MouseListener() {
 				
 				@Override
 				public void mouseReleased(MouseEvent e) {
 					// TODO Auto-generated method stub
-					
 				}
 				
 				@Override
@@ -118,9 +115,7 @@ public class HowToPlay extends JPanel{
 						remove(next);
 						play.setVisible(true);
 					}
-					
 					setPage(getPage()+1);
-					
 				}
 			});
 			

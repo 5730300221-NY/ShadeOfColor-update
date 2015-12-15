@@ -10,9 +10,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -22,15 +20,17 @@ import entity.Sheep;
 
 public class GameScreen extends JPanel {
 
-	private static JLabel Home = new JLabel();
-	private boolean PauseStatus;
-	
+	private static JLabel Home;
+	private static boolean PauseStatus;
+
 	public GameScreen() {
+		Home = new JLabel();
 		this.setDoubleBuffered(true);
 		this.setPreferredSize(new Dimension(1280, 720));
-		this.PauseStatus=false;
+		this.PauseStatus = false;
 		ClassLoader cloader = RenderableHolder.class.getClassLoader();
-		ImageIcon HomeButton = new ImageIcon(cloader.getResource("image/Home2.png"));
+		ImageIcon HomeButton = new ImageIcon(
+				cloader.getResource("image/Home2.png"));
 		Home.setIcon(HomeButton);
 		this.add(Home);
 		this.addKeyListener(new KeyListener() {
@@ -42,147 +42,148 @@ public class GameScreen extends JPanel {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				
+
 				InputUtility.setPause(false);
-				
-				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-					try {
-						Thread.sleep(100);
-						Sheep.setSheepIndex(0);
-						Sheep.setColor(0);
-					} catch (InterruptedException r) {
-						// e.printStackTrace();
+				if (!isPauseStatus()) {
+					
+					if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+							Sheep.setSheepIndex(0);
+							Sheep.setColor(0);
 					}
-
+					
+					if (e.getKeyCode() == KeyEvent.VK_Q) {
+						Button.update(6);
+						InputUtility.keyRelease(e);
+						InputUtility.Updatestate();
+					}
+					if (e.getKeyCode() == KeyEvent.VK_W) {
+						Button.update(7);
+						InputUtility.keyRelease(e);
+						InputUtility.Updatestate();
+					}
+					if (e.getKeyCode() == KeyEvent.VK_E) {
+						Button.update(8);
+						InputUtility.keyRelease(e);
+						InputUtility.Updatestate();
+					}
+					if (e.getKeyCode() == KeyEvent.VK_R) {
+						Button.update(9);
+						InputUtility.keyRelease(e);
+						InputUtility.Updatestate();
+					}
+					if (e.getKeyCode() == KeyEvent.VK_O) {
+						Button.update(10);
+						InputUtility.keyRelease(e);
+						InputUtility.Updatestate();
+					}
+					if (e.getKeyCode() == KeyEvent.VK_I) {
+						Button.update(11);
+						InputUtility.keyRelease(e);
+						InputUtility.Updatestate();
+					}
 				}
-				if (e.getKeyCode() == KeyEvent.VK_Q) {
-					Button.update(6);
-					InputUtility.keyRelease(e);
-					InputUtility.Updatestate();
-				}
-				if (e.getKeyCode() == KeyEvent.VK_W) {
-					Button.update(7);
-					InputUtility.keyRelease(e);
-					InputUtility.Updatestate();
-				}
-				if (e.getKeyCode() == KeyEvent.VK_E) {
-					Button.update(8);
-					InputUtility.keyRelease(e);
-					InputUtility.Updatestate();
-				}
-				if (e.getKeyCode() == KeyEvent.VK_R) {
-					Button.update(9);
-					InputUtility.keyRelease(e);
-					InputUtility.Updatestate();
-				}
-				if (e.getKeyCode() == KeyEvent.VK_O) {
-					Button.update(10);
-					InputUtility.keyRelease(e);
-					InputUtility.Updatestate();
-				}
-				if (e.getKeyCode() == KeyEvent.VK_I) {
-					Button.update(11);
-					InputUtility.keyRelease(e);
-					InputUtility.Updatestate();
-				}
-
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				
-				if(e.getKeyCode()== KeyEvent.VK_ENTER && !InputUtility.isPause()){
+
+				if (e.getKeyCode() == KeyEvent.VK_ENTER&& !InputUtility.isPause()) {
 					InputUtility.setPause(true);
 					setPauseStatus(!isPauseStatus());
-					System.out.println(isPauseStatus());
-				}
-				
-				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-					Sheep.setSheepIndex(1);
-					GameLogic.KillWolf(Sheep.getSheepColor());
-					AudioUtility.playSound("Attack");
-				}
-				else if (e.getKeyCode() == KeyEvent.VK_Q) {
-					Button.update(0);
-					InputUtility.keyPressed(e);
-					InputUtility.Updatestate();
-					Sheep.Update();
-				}
-				else if (e.getKeyCode() == KeyEvent.VK_W) {
-					Button.update(1);
-					InputUtility.keyPressed(e);
-					InputUtility.Updatestate();
-					Sheep.Update();
-				}
-				else if (e.getKeyCode() == KeyEvent.VK_E) {
-					Button.update(2);
-					InputUtility.keyPressed(e);
-					InputUtility.Updatestate();
-					Sheep.Update();
-				}
-				else if (e.getKeyCode() == KeyEvent.VK_R) {
-					Button.update(3);
-					InputUtility.keyPressed(e);
-					InputUtility.Updatestate();
-					Sheep.Update();
-				}
-				else if (e.getKeyCode() == KeyEvent.VK_O) {
-					Button.update(4);
-					InputUtility.keyPressed(e);
-					InputUtility.Updatestate();
-					Sheep.Update();
-				}
-				else if (e.getKeyCode() == KeyEvent.VK_I) {
-					Button.update(5);
-					InputUtility.keyPressed(e);
-					InputUtility.Updatestate();
-					Sheep.Update();
 				}
 
+				if (!isPauseStatus()) {
+					if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+						
+						new Thread(new Runnable() {
+							
+							@Override
+							public void run() {
+								AudioUtility.playSound("Attack");
+								Sheep.setSheepIndex(1);
+								GameLogic.KillWolf(Sheep.getSheepColor());	
+							}
+						}).start();
+					} 
+					
+					else if (e.getKeyCode() == KeyEvent.VK_Q) {
+						Button.update(0);
+						InputUtility.keyPressed(e);
+						InputUtility.Updatestate();
+						Sheep.Update();
+					} else if (e.getKeyCode() == KeyEvent.VK_W) {
+						Button.update(1);
+						InputUtility.keyPressed(e);
+						InputUtility.Updatestate();
+						Sheep.Update();
+					} else if (e.getKeyCode() == KeyEvent.VK_E) {
+						Button.update(2);
+						InputUtility.keyPressed(e);
+						InputUtility.Updatestate();
+						Sheep.Update();
+					} else if (e.getKeyCode() == KeyEvent.VK_R) {
+						Button.update(3);
+						InputUtility.keyPressed(e);
+						InputUtility.Updatestate();
+						Sheep.Update();
+					} else if (e.getKeyCode() == KeyEvent.VK_O) {
+						Button.update(4);
+						InputUtility.keyPressed(e);
+						InputUtility.Updatestate();
+						Sheep.Update();
+					} else if (e.getKeyCode() == KeyEvent.VK_I) {
+						Button.update(5);
+						InputUtility.keyPressed(e);
+						InputUtility.Updatestate();
+						Sheep.Update();
+					}
+				}
 			}
 		});
-		
+
 		Home.addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				setPauseStatus(false);
+				GameLogic.clearwolf();
 				AudioUtility.stopSound("Intro");
 				AudioUtility.stopSound("GameSound");
 				AudioUtility.playSound("Intro");
 				GameManager.frame.switchScene(new GameTitle());
 			}
-		}); 
+		});
 	}
-	
-	public boolean isPauseStatus() {
+
+	public static boolean isPauseStatus() {
 		return PauseStatus;
 	}
 
-	public void setPauseStatus(boolean pauseStatus) {
+	public static void setPauseStatus(boolean pauseStatus) {
 		PauseStatus = pauseStatus;
 	}
 

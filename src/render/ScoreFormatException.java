@@ -1,9 +1,9 @@
 package render;
 
-public class ScoreParsingException extends Exception {
+public class ScoreFormatException extends Exception {
 	private int errorType;
 
-	public ScoreParsingException(int errorType) {
+	public ScoreFormatException(int errorType) {
 		this.errorType = errorType;
 	}
 

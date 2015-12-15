@@ -1,9 +1,6 @@
 package render;
 
-import input.InputUtility;
-
 import java.awt.Graphics2D;
-
 import entity.Sheep;
 
 public class Button implements IRenderable {
@@ -187,17 +184,17 @@ public class Button implements IRenderable {
 
 		}
 
-		if (getR() == 0) {
+		if (R == 0) {
 			g2d.drawImage(Resource.RedButton, 80, 350, null);
 		} else {
 			g2d.drawImage(Resource.RedButton1, 80, 350, null);
 		}
-		if (this.G == 0) {
+		if (G == 0) {
 			g2d.drawImage(Resource.GreenButton, 80, 550, null);
 		} else {
 			g2d.drawImage(Resource.GreenButton1, 80, 550, null);
 		}
-		if (this.B == 0) {
+		if (B == 0) {
 			g2d.drawImage(Resource.BlueButton, 320, 550, null);
 		} else {
 			g2d.drawImage(Resource.BlueButton1, 320, 550, null);

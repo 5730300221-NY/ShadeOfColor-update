@@ -2,13 +2,8 @@ package render;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 
 public class GameWindow extends JFrame {
 	private JPanel currentFrame;
@@ -20,7 +15,9 @@ public class GameWindow extends JFrame {
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Image img = kit.createImage(url);
 		this.setIconImage(img);
-		
+		if (frame instanceof GameTitle) {
+			AudioUtility.playSound("Intro");
+		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		this.currentFrame = frame;
@@ -28,7 +25,7 @@ public class GameWindow extends JFrame {
 		pack();
 		this.setVisible(true);
 		this.currentFrame.requestFocus();
-		
+
 	}
 
 	public void switchScene(JPanel frame) {
@@ -36,6 +33,10 @@ public class GameWindow extends JFrame {
 		this.currentFrame = frame;
 		if (frame instanceof GameScreen) {
 			AudioUtility.stopSound("Intro");
+		}
+		if (frame instanceof GameTitle) {
+			AudioUtility.stopSound("GameSound");
+			AudioUtility.playSound("Intro");
 		}
 		getContentPane().add(frame);
 		getContentPane().validate();

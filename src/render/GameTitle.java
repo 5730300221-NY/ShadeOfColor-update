@@ -1,22 +1,16 @@
 package render;
 
-import java.applet.AudioClip;
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -26,13 +20,15 @@ import entity.PlayerStatus;
 public class GameTitle extends JPanel {
 
 	private BufferedImage IntroBG, Ishade, Iof, Icolorful, Eu, Ed;
-	private static JLabel Stbn = new JLabel();
-	private static JLabel Hgbn = new JLabel();
-	private static int eyestate = 1;
+	private static JLabel Stbn;
+	private static JLabel Hgbn;
+	private static int eyestate;
 
 	public GameTitle() {
+		Stbn = new JLabel();
+		Hgbn = new JLabel();
+		eyestate = 1;
 		this.setDoubleBuffered(true);
-		AudioUtility.playSound("Intro");
 		this.setPreferredSize(new Dimension(1280, 720));
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBorder(BorderFactory.createEmptyBorder(350, 700, 0, 0));
@@ -111,11 +107,7 @@ public class GameTitle extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				AudioUtility.playSound("Click");
-				HighScoreUtility.displayTop5();
 				GameManager.frame.switchScene(new HighScore());
-				String message = "High Score";
-
-
 			}
 		});
 

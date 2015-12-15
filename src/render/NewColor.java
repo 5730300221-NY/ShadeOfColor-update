@@ -1,41 +1,33 @@
 package render;
 
-import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Insets;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import entity.GameManager;
 import entity.PlayerStatus;
 
 public class NewColor extends JPanel {
 	private BufferedImage C, C0, C1, C2, C3, C4, C5, C6, C7;
-	private static JLabel OK = new JLabel();
+	private static JLabel OK;
 	
 	public NewColor() {
+		OK = new JLabel();
 		this.setDoubleBuffered(true);
 		this.setPreferredSize(new Dimension(1280, 720));
 		OK.setBorder(BorderFactory.createEmptyBorder(589, 0, 0, 0));
 		ClassLoader cloader = RenderableHolder.class.getClassLoader();
 		ImageIcon OkButton = new ImageIcon(cloader.getResource("image/OkButton.png"));
 		OK.setIcon(OkButton);
-		
-		
 		this.add(OK);
-
 		this.addKeyListener(new KeyListener() {
 
 			@Override
@@ -53,7 +45,6 @@ public class NewColor extends JPanel {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					AudioUtility.playSound("Start");
 					GameManager.frame.switchScene(new GameScreen());
-					System.out.println("gamescreen");
 				}
 			}
 		});
